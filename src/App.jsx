@@ -1,8 +1,8 @@
 
-import './index.css'
-// import { TodoOne } from './components/components-task-one/ToDo-list-one'
-import { Todo } from './components/components-task-two/ToDo-list-two'
-function App() {
+import { Outlet } from 'react-router-dom';
+import './index.css';
+
+export const App = () => {
   
 
 
@@ -11,8 +11,7 @@ function App() {
       <div className='container'>
         <h1>TODO LIST</h1>
         <div className="main">
-          <Todo/>
-          {/* <TodoOne /> */}
+          <Outlet />
         </div>
       </div>
      
@@ -20,4 +19,3 @@ function App() {
   )
 }
 
-export default App

@@ -38,10 +38,18 @@ export const UseAddDeleteChangeTodos = () => {
           method: 'DELETE', 
         })
         
-          .then((rawResponse) => rawResponse.json())
-          .then((response) => {
-              console.log(` Удалено, ответ сервера: `, response);
-              setUpdateDeleteTodos(!updateDeleteTodos);
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`Ошибка при удалении задачи с ID ${id}: ${response.statusText}`);
+          }
+          return response.json();
+        })
+        .then((response) => {
+          console.log(`Задача с ID ${id} удалена, ответ сервера:`, response);
+          setUpdateDeleteTodos(prev => !prev);
+        })
+          .catch((error) => {
+            console.error(error.message);
           })
           .finally(() => setUpdateDeleteTodos(false));
     };
